@@ -1,0 +1,73 @@
+<!--
+  Generated template for the AddTransaction page.
+
+  See http://ionicframework.com/docs/v2/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>AddTransaction</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <ion-list>
+<ion-list-header>
+      Informations
+    </ion-list-header>
+    <ion-item>
+      <ion-label>Outcome</ion-label>
+      <ion-toggle checked="true"></ion-toggle>
+    </ion-item>
+
+    <ion-item>
+      <ion-label fixed>Amount</ion-label>
+      <ion-input type="number"></ion-input>
+    </ion-item>
+
+
+  </ion-list>
+  <ion-list>
+<ion-list-header>
+      Sort
+    </ion-list-header>
+    
+    <ion-item (click)="showCategories()">
+      Category
+      <ion-note item-right *ngIf="category">{{ category.name }}</ion-note>
+      <ion-note item-right *ngIf="!category">None</ion-note>
+    </ion-item>
+
+    
+    <ion-item (click)="showColors()">
+      Color
+      <ion-note item-right *ngIf="color">{{ color.name }}</ion-note>
+      <ion-note item-right *ngIf="!color">None</ion-note>
+    </ion-item>
+
+
+  </ion-list>
+  
+  <ion-list>
+<ion-list-header>
+      Date
+    </ion-list-header>
+    
+    <ion-item>
+      <ion-label>Date</ion-label>
+      <ion-datetime displayFormat="MMM DD, YYYY" pickerFormat="MMM DD, YYYY"></ion-datetime>
+    </ion-item>
+
+    <ion-item>
+      <ion-label fixed>Recurrency</ion-label>
+      <ion-input type="number"></ion-input>
+    </ion-item>
+
+
+  </ion-list>
+</ion-content>
+
+
