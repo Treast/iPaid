@@ -1,4 +1,6 @@
 import { NgModule, ErrorHandler } from '@angular/core';
+import { DatePipe } from '@angular/common';
+
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
 import { AboutPage } from '../pages/about/about';
@@ -9,12 +11,13 @@ import { LoginPage } from '../pages/login/login';
 import { SignUpPage } from '../pages/sign-up/sign-up';
 import { AddTransactionPage } from '../pages/add-transaction/add-transaction';
 import { CategoriesModalPage } from '../pages/categories-modal/categories-modal';
-import { ColorsModalPage } from '../pages/colors-modal/colors-modal';
+import { MonthPage } from '../pages/month/month';
 
 import { Auth } from '../providers/auth';
 import { Transaction } from '../providers/transaction';
 
 import { AngularFireModule } from 'angularfire2';
+import { ChartsModule } from 'ng2-charts';
 
 export const firebaseConfig = {
   apiKey: "AIzaSyCtKGD9srLLDXN1YGvdiAw10ShHFRcGNcU",
@@ -35,11 +38,12 @@ export const firebaseConfig = {
     SignUpPage,
     AddTransactionPage,
     CategoriesModalPage,
-    ColorsModalPage
+    MonthPage
   ],
   imports: [
     IonicModule.forRoot(MyApp),
-    AngularFireModule.initializeApp(firebaseConfig)
+    AngularFireModule.initializeApp(firebaseConfig),
+    ChartsModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -52,8 +56,8 @@ export const firebaseConfig = {
     SignUpPage,
     AddTransactionPage,
     CategoriesModalPage,
-    ColorsModalPage
+    MonthPage
   ],
-  providers: [Auth, Transaction, { provide: ErrorHandler, useClass: IonicErrorHandler }]
+  providers: [Auth, Transaction, DatePipe, { provide: ErrorHandler, useClass: IonicErrorHandler }]
 })
 export class AppModule { }

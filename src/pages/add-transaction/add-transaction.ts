@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { NavController, NavParams, Modal, ModalController } from 'ionic-angular';
 
 import { CategoriesModalPage } from '../categories-modal/categories-modal';
-import { ColorsModalPage } from '../colors-modal/colors-modal';
 
 import { Transaction } from '../../providers/transaction';
 
@@ -18,27 +17,33 @@ import { Transaction } from '../../providers/transaction';
 })
 export class AddTransactionPage {
 
-  category: Object;
-  color: Object;
+  newTransaction: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private transaction: Transaction, private modalCtrl: ModalController) {}
+  constructor(public navCtrl: NavController, public navParams: NavParams, private transaction: Transaction, private modalCtrl: ModalController)
+  {
+    this.newTransaction = {
+      paid_at: new Date().toISOString(),
+      amount: 0,
+      outcome: true,
+    };
+  }
 
   public showCategories(): void
   {
     let modal = this.modalCtrl.create(CategoriesModalPage);
     modal.onDidDismiss(data => {
-      this.category = data;
+      this.newTransaction.category = data;
     });
     modal.present();
   }
-
-  public showColors(): void
-  {
-    let modal = this.modalCtrl.create(ColorsModalPage);
-    modal.onDidDismiss(data => {
-      this.color = data;
+  
+  public addTransaction(): void {
+    this.transaction.addTransaction(this.newTransaction).subscribe(data => {
+      console.log(data);
+      this.navCtrl.pop();
+    }, err => {
+      console.log(err);
     });
-    modal.present();
   }
 
 }

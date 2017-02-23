@@ -4,6 +4,8 @@ import { NavController } from 'ionic-angular';
 
 import { AddTransactionPage } from '../add-transaction/add-transaction';
 
+import { Transaction } from '../../providers/transaction';
+
 
 @Component({
   selector: 'page-home',
@@ -11,8 +13,18 @@ import { AddTransactionPage } from '../add-transaction/add-transaction';
 })
 export class HomePage {
 
-  constructor(public navCtrl: NavController) {
+  lastTransactions;
 
+  constructor(public navCtrl: NavController, private transaction: Transaction) {
+
+  }
+
+  ionViewWillEnter() {
+    this.transaction.getLastTransactions().subscribe(transactions => {
+      this.lastTransactions = transactions;
+    }, error => {
+      console.log(error);
+    });
   }
 
   public addTransaction(): void {

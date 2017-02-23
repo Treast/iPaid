@@ -9,16 +9,12 @@ import { Transaction } from '../../providers/transaction';
 })
 export class CategoriesModalPage {
 
-  categories: Object[];
+  categories: any;
 
   constructor(public navCtrl: NavController, private viewCtrl: ViewController, public navParams: NavParams, private transaction: Transaction) {}
 
-  ionViewDidLoad() {
-    this.transaction.getCategories().subscribe(data => {
-      this.categories = data;
-    }, error => {
-      console.log(error);
-    });
+  ionViewDidEnter() {
+    this.categories = this.transaction.getCategories();
   }
 
   selectCategory(category) {
