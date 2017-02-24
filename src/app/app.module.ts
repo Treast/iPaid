@@ -11,7 +11,7 @@ import { LoginPage } from '../pages/login/login';
 import { SignUpPage } from '../pages/sign-up/sign-up';
 import { AddTransactionPage } from '../pages/add-transaction/add-transaction';
 import { CategoriesModalPage } from '../pages/categories-modal/categories-modal';
-import { MonthPage } from '../pages/month/month';
+import { HistoryPage } from '../pages/history/history';
 
 import { Auth } from '../providers/auth';
 import { Transaction } from '../providers/transaction';
@@ -38,7 +38,7 @@ export const firebaseConfig = {
     SignUpPage,
     AddTransactionPage,
     CategoriesModalPage,
-    MonthPage
+    HistoryPage
   ],
   imports: [
     IonicModule.forRoot(MyApp),
@@ -56,7 +56,7 @@ export const firebaseConfig = {
     SignUpPage,
     AddTransactionPage,
     CategoriesModalPage,
-    MonthPage
+    HistoryPage
   ],
   providers: [Auth, Transaction, DatePipe, { provide: ErrorHandler, useClass: IonicErrorHandler }]
 })

@@ -65,6 +65,11 @@ export class Transaction {
             startAt: startDate.toISOString(),
             endAt: endDate.toISOString()
           }
+        }).map(transactions => {
+          return transactions.map(transaction => {
+            transaction.category = this.angularFire.database.object('/categories/' + transaction.category_key);
+            return transaction;
+          });
         });
         observer.next(transactions);
       }, error => {

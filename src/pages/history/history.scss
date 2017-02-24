@@ -1,4 +1,4 @@
-page-month {
+page-history {
     .chart {
         display: block;
         width: 100%;
@@ -9,5 +9,11 @@ page-month {
         margin-top: -139px;
         margin-bottom: 139px;
         font-size: 2rem;
+    }
+
+    .no-transaction {
+        margin-top: 215px;
+        color: #95a5a6;
+        font-size: 1.4rem;
     }
 }
