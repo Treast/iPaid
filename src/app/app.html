@@ -1,11 +1,13 @@
 <ion-menu [content]="menu">
-  <ion-toolbar>
-    <ion-title>Menu</ion-title>
-  </ion-toolbar>
+  <ion-header>
+    <ion-toolbar>
+      <ion-title>Menu</ion-title>
+    </ion-toolbar>
+  </ion-header>
 
-  <ion-content padding>
+  <ion-content>
     <ion-list>
-      <ion-item>Subscriptions</ion-item>
+      <ion-item (click)="goToSubscriptions()">Subscriptions</ion-item>
       <ion-item>My account</ion-item>
       <ion-item>Logout</ion-item>
     </ion-list>

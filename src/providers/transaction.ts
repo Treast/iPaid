@@ -2,6 +2,9 @@ import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
 import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/first';
+import 'rxjs/add/operator/last';
+
 
 import { AngularFire } from 'angularfire2';
 
@@ -28,7 +31,6 @@ export class Transaction {
           category_key: transaction.category.$key,
           amount: transaction.amount,
           paid_at: transaction.paid_at,
-          outcome: transaction.outcome
         }).then(sent => {
           observer.next(sent);
         }).catch(err => {
@@ -40,10 +42,33 @@ export class Transaction {
     });
   }
 
+  public addSubscription(subscription): Observable<any> {
+    return Observable.create(observer => {
+      this.auth.getUserData().subscribe(data => {
+        this.angularFire.database.list('/users/' + data.auth.uid + '/subscriptions').push({
+          name: subscription.name,
+          category_key: subscription.category.$key,
+          amount: subscription.amount,
+        }).then(sent => {
+          observer.next(sent);
+        }).catch(err => {
+          observer.error(err);
+        });
+      }, error => {
+        observer.error(error);
+      });
+    });
+  }
+
+
   public getLastTransactions(): Observable<any> {
     return Observable.create(observer => {
       this.auth.getUserData().subscribe(auth => {
-        let transactions = this.angularFire.database.list('/users/' + auth.auth.uid + '/transactions').map(transactions => {
+        let transactions = this.angularFire.database.list('/users/' + auth.auth.uid + '/transactions', {
+          query: {
+            orderByChild: 'paid_at'
+          }
+        }).map(transactions => {
           return transactions.map(transaction => {
             transaction.category = this.angularFire.database.object('/categories/' + transaction.category_key);
             return transaction;
@@ -72,6 +97,22 @@ export class Transaction {
           });
         });
         observer.next(transactions);
+      }, error => {
+        observer.error(error);
+      });
+    });
+  }
+
+  public getSubscriptions(): Observable<any> {
+    return Observable.create(observer => {
+      this.auth.getUserData().subscribe(auth => {
+        let subscriptions = this.angularFire.database.list('/users/' + auth.auth.uid + '/subscriptions').map(subs => {
+          return subs.map(subscription => {
+            subscription.category = this.angularFire.database.object('/categories/' + subscription.category_key);
+            return subscription;
+          });
+        });
+        observer.next(subscriptions);
       }, error => {
         observer.error(error);
       });

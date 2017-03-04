@@ -1,0 +1,40 @@
+
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Add a Subscription</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+<ion-list>
+    <ion-list-header>
+      Informations
+    </ion-list-header>
+    <ion-item>
+      <ion-label fixed>Name</ion-label>
+      <ion-input type="text" [(ngModel)]="newSubscription.name"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label fixed>Amount</ion-label>
+      <ion-input type="number" [(ngModel)]="newSubscription.amount"></ion-input>
+    </ion-item>
+  </ion-list>
+
+  <ion-list>
+    <ion-list-header>
+      Sorting
+    </ion-list-header>
+
+    <ion-item (click)="showCategories()">
+      Category
+      <ion-note item-right *ngIf="newSubscription.category">{{ newSubscription.category.name }}</ion-note>
+      <ion-note item-right *ngIf="!newSubscription.category">None</ion-note>
+    </ion-item>
+  </ion-list>
+  <button ion-button block (click)="addSubscription()">Add the subscription</button>
+
+</ion-content>

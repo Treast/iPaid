@@ -12,6 +12,9 @@ import { SignUpPage } from '../pages/sign-up/sign-up';
 import { AddTransactionPage } from '../pages/add-transaction/add-transaction';
 import { CategoriesModalPage } from '../pages/categories-modal/categories-modal';
 import { HistoryPage } from '../pages/history/history';
+import { SubscriptionsPage } from '../pages/subscriptions/subscriptions';
+import { AddSubscriptionPage } from '../pages/add-subscription/add-subscription';
+import { StatsPage } from '../pages/stats/stats';
 
 import { Auth } from '../providers/auth';
 import { Transaction } from '../providers/transaction';
@@ -38,7 +41,10 @@ export const firebaseConfig = {
     SignUpPage,
     AddTransactionPage,
     CategoriesModalPage,
-    HistoryPage
+    HistoryPage,
+    SubscriptionsPage,
+    AddSubscriptionPage,
+    StatsPage
   ],
   imports: [
     IonicModule.forRoot(MyApp),
@@ -56,7 +62,10 @@ export const firebaseConfig = {
     SignUpPage,
     AddTransactionPage,
     CategoriesModalPage,
-    HistoryPage
+    HistoryPage,
+    SubscriptionsPage,
+    AddSubscriptionPage,
+    StatsPage
   ],
   providers: [Auth, Transaction, DatePipe, { provide: ErrorHandler, useClass: IonicErrorHandler }]
 })

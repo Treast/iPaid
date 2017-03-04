@@ -23,11 +23,6 @@
     </ion-item>
 
     <ion-item>
-      <ion-label>Outcome</ion-label>
-      <ion-toggle checked="true" [(ngModel)]="newTransaction.outcome"></ion-toggle>
-    </ion-item>
-
-    <ion-item>
       <ion-label fixed>Amount</ion-label>
       <ion-input type="number" [(ngModel)]="newTransaction.amount"></ion-input>
     </ion-item>
@@ -53,11 +48,6 @@
     <ion-item>
       <ion-label>Date</ion-label>
       <ion-datetime displayFormat="MMM DD, YYYY" pickerFormat="MMM DD, YYYY" [(ngModel)]="newTransaction.paid_at"></ion-datetime>
-    </ion-item>
-
-    <ion-item>
-      <ion-label fixed>Recurrency</ion-label>
-      <ion-input type="number"></ion-input>
     </ion-item>
 
   </ion-list>
