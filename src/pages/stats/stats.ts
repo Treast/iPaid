@@ -37,6 +37,7 @@ export class StatsPage {
         this.transactions.forEach((transaction, index) => {
           this.chartData[transaction.category_key] += parseInt(transaction.amount);
         });
+        console.log('Transactions', this.transactions);
         this.beginDate = new Date(this.transactions[0].paid_at);
         this.endDate = new Date(this.transactions[this.transactions.length - 1].paid_at);
         this.getMonths(this.beginDate, this.endDate);
@@ -46,15 +47,7 @@ export class StatsPage {
     });
     this.transaction.getCategories().subscribe(categories => {
       this.categories = categories;
-      categories.forEach(category => {
-        if(this.selectedCategory == null) this.selectedCategory = category;
-        this.chartColors[0].backgroundColor[category.$key] = category.color;
-        this.chartData[category.$key] = {
-          data: new Array(this.chartLabels.length + 1).join('0').split('').map(parseFloat),
-          label: category.name,
-          backgroundColor: category.color,
-        };
-      });
+      this.selectedCategory = this.categories[0];
       this.placeTransactions();
     }, error => {
       console.log(error);
@@ -63,14 +56,19 @@ export class StatsPage {
 
   public placeTransactions() {
     this.loaded = false;
-    this.chartData = [];
+    console.log('Labels', this.chartLabels);
+    this.chartData = [{
+      data: new Array(this.chartLabels.length + 1).join('0').split('').map(parseFloat),
+      label: this.selectedCategory.name,
+    }];
     this.transactions.forEach(transaction => {
       if(transaction.category_key == this.selectedCategory.$key)
       {
+        console.log('T', transaction);
         let dateTransaction = new Date(transaction.paid_at);
         let month = this.datePipe.transform(dateTransaction, 'MMM y');
         let index = this.chartLabels.indexOf(month);
-        this.chartData[transaction.category_key].data[index] += parseFloat(transaction.amount);
+        this.chartData[0].data[index] += parseFloat(transaction.amount);
       }
     });
     this.loaded = true;
@@ -90,8 +88,9 @@ export class StatsPage {
   }
 
   public selectCategory(category): void {
-    console.log("Clicked ok");
     this.selectedCategory = category;
+    this.chartColors[0].backgroundColor = category.color;
+    console.log('Color', this.chartColors);
     this.placeTransactions();
   }
 

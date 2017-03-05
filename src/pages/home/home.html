@@ -24,9 +24,8 @@
       Last transactions
     </ion-list-header>
 
-   <ion-item *ngFor="let transaction of lastTransactions | async">
-      <ion-icon name="{{ (transaction.category | async)?.icon }}" item-left></ion-icon>
-      {{ transaction.name}}
+   <ion-item *ngFor="let transaction of lastTransactions | async" style.borderLeft="5px solid {{ (transaction.category | async)?.color }}">
+      <div class="name">{{ transaction.name}}</div>
       <ion-note item-right>{{ transaction.amount }}€</ion-note>
     </ion-item>
   </ion-list>
