@@ -31,7 +31,28 @@ ion-navbar {
         color: #FFFFFF !important;
     }
 }
+.header-ios .toolbar-ios:last-child 
+{
+    .toolbar-background-ios {
+        background: transparent !important;
+        border: 0 !important;
+    }
+    .toolbar-title {
+        color: #FFFFFF;
+    }
+}
+.text-input::-moz-placeholder {
+  color: white;
+}
 
+.text-input:-ms-input-placeholder {
+  color: white;
+}
+
+.text-input::-webkit-input-placeholder {
+  text-indent: 0;
+  color: white;
+}
 ion-tabs .tabbar {
     background: transparent !important;
     border-top: 0 !important;

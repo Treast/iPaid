@@ -41,7 +41,7 @@
     <div *ngIf="hasValue">
       <ion-list>
         <div class="chart">
-          <canvas baseChart [data]="chartData" [labels]="chartLabels" [colors]="chartColors" [chartType]="doughnutChartType" (chartClick)="chartClicked($event)"></canvas>
+          <canvas baseChart [data]="chartData" [options]="chartOptions" [labels]="chartLabels" [colors]="chartColors" [chartType]="doughnutChartType" (chartClick)="chartClicked($event)"></canvas>
           <div class="total-amount">{{ total_amount }}€</div>
         </div>
         <ion-list-header>

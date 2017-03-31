@@ -24,6 +24,15 @@ export class HistoryPage {
   public chartColors: any = [{
     backgroundColor: []
   }];
+  public chartOptions: any = {
+    responsive: true,
+    defaultFontColor: '#FFF',
+    legend: {
+      labels: {
+        fontColor: '#FFF',
+      }
+    }
+  };
 
   public loaded = false;
 

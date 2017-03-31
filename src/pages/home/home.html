@@ -18,7 +18,12 @@
 </ion-header>
 
 <ion-content padding>
-  
+  <div class="sum">
+    This week
+    <div class="amount">
+      {{ sum }}€
+    </div>
+  </div>
   <div style="display: block;" *ngIf="loaded">
     <canvas baseChart width="400" height="400" [datasets]="chartData" [legend]="false" [labels]="chartLabels" [chartType]="chartType" [options]="chartOptions" [colors]="chartColors"></canvas>
   </div>

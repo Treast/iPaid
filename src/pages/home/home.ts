@@ -16,6 +16,7 @@ export class HomePage {
 
   lastTransactions;
 
+  public sum: number = 0;
   public chartLabels: string[] = [];
   public chartData: any = [];
   public chartColors: any = [{
@@ -61,6 +62,7 @@ export class HomePage {
   }
 
   ionViewWillEnter() {
+    this.sum = 0;
     this.beginDate = this.getMonday(new Date());
     this.endDate = new Date(this.beginDate.getTime());
     this.endDate.setDate(this.endDate.getDate() + 7);
@@ -102,6 +104,7 @@ export class HomePage {
       let day = this.datePipe.transform(dateTransaction, 'EEE');
       let index = this.chartLabels.indexOf(day);
       this.chartData[0].data[index] += parseFloat(transaction.amount);
+      this.sum += parseFloat(transaction.amount);
     });
     this.loaded = true;
   }

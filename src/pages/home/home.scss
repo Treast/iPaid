@@ -3,5 +3,15 @@ page-home {
     ion-list.list.list-ios {
         margin-top: 30px !important;
     }
+    .sum {
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 0.1 rem;
+            font-size: 1.2rem;
+        .amount {
+            font-size: 24px;
+            padding: 10px 10px 25px;
+        }
+    }
 
 }

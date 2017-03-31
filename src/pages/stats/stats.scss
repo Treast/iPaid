@@ -2,4 +2,16 @@ page-stats {
     ion-col {
         text-align: center;
     }
+
+    .no-transaction {
+        margin-top: 215px;
+        color: #95a5a6;
+        font-size: 1.4rem;
+        color: #FFF;
+    }
+    ion-segment-button.segment-button
+    {
+        border-color: #FFF !important;
+        color: #FFF !important;
+    }
 }

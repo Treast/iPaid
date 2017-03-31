@@ -27,9 +27,30 @@ export class StatsPage {
 
   public beginDate: Date;
   public endDate: Date;
+  public hasValue: boolean = false;
+  public chartOptions: any = {
+    responsive: true,
+    defaultFontColor: '#FFF',
+    legend: {
+      labels: {
+        fontColor: '#FFF',
+      }
+    },
+    scales: {
+      xAxes: [{
+        ticks: {
+          fontColor: "#FFF", // this here
+        },
+      }],
+      yAxes: [{
+        ticks: {
+          fontColor: "#FFF", // this here
+        },
+      }],
+    }
+  };
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private transaction: Transaction, private datePipe: DatePipe)
-  {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private transaction: Transaction, private datePipe: DatePipe) {
     this.loaded = false;
     this.transaction.getLastTransactions().subscribe(transactions => {
       transactions.subscribe(ts => {
@@ -56,15 +77,16 @@ export class StatsPage {
 
   public placeTransactions() {
     this.loaded = false;
+    this.hasValue = false;
     console.log('Labels', this.chartLabels);
     this.chartData = [{
       data: new Array(this.chartLabels.length + 1).join('0').split('').map(parseFloat),
       label: this.selectedCategory.name,
     }];
     this.transactions.forEach(transaction => {
-      if(transaction.category_key == this.selectedCategory.$key)
-      {
+      if (transaction.category_key == this.selectedCategory.$key) {
         console.log('T', transaction);
+        this.hasValue = true;
         let dateTransaction = new Date(transaction.paid_at);
         let month = this.datePipe.transform(dateTransaction, 'MMM y');
         let index = this.chartLabels.indexOf(month);

@@ -2,4 +2,10 @@ page-add-transaction {
     input[type=number], input[type=text] {
         text-align: right;
     }
+    *::-webkit-input-placeholder {
+        color: #FFF !important;
+    }
+    ::-webkit-input-placeholder {
+        color: #FFF !important;
+    }
 }

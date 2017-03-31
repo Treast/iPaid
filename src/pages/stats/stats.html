@@ -24,9 +24,15 @@
       </ion-row>
      </ion-grid>
      -->
-
-  <div style="display: block;" *ngIf="loaded">
-    <canvas baseChart width="400" height="400" [datasets]="chartData" [labels]="chartLabels" [chartType]="chartType" (chartHover)="chartHovered($event)"
-      (chartClick)="chartClicked($event)"></canvas>
+  <div *ngIf="hasValue">
+    <div style="display: block;" *ngIf="loaded">
+      <canvas baseChart width="400" height="400" [options]="chartOptions" [datasets]="chartData" [labels]="chartLabels" [chartType]="chartType" (chartHover)="chartHovered($event)"
+        (chartClick)="chartClicked($event)"></canvas>
+    </div>
   </div>
+
+  <div *ngIf="!hasValue" class="no-transaction">
+    <p text-center>No transaction during this period.</p>
+  </div>
+
 </ion-content>

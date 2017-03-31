@@ -6,7 +6,7 @@ page-history {
 
     .total-amount {
         text-align: center;
-        margin-top: -139px;
+        margin-top: -110px;
         margin-bottom: 139px;
         font-size: 2rem;
     }
@@ -15,5 +15,15 @@ page-history {
         margin-top: 215px;
         color: #95a5a6;
         font-size: 1.4rem;
+        color: #FFF;
+    }
+
+    ion-icon {
+        color: #FFFFFF;
+    }
+    ion-segment-button.segment-button
+    {
+        border-color: #FFF !important;
+        color: #FFF !important;
     }
 }
