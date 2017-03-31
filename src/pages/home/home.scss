@@ -1,54 +1,7 @@
-@font-face {
-  font-family: "Helvetica";
-  src: url("../assets/fonts/helveticaneue.ttf");
-}
-
-ion-navbar {
-    .toolbar-background {
-        background: transparent !important;
-        border: 0 !important;
-    }
-    button {
-        color: #FFFFFF !important;
-    }
-    ion-title .toolbar-title {
-        color: #FFFFFF !important;
-    }
-}
-
-ion-tabs .tabbar {
-    background: transparent !important;
-    border-top: 0 !important;
-    a {
-        color: #FFFFFF !important;
-
-        ion-icon {
-            color: #FFFFFF !important;
-        }
-    }
-}
 page-home {
-    ion-content {
-        font-family: "Helvetica";
 
-background: -webkit-linear-gradient(12deg, rgb(13, 78, 136), rgb(24, 223, 182));
-background: linear-gradient(12deg, rgb(13, 78, 136), rgb(24, 223, 182));
-  
-        color: #FFF !important;
-        ion-item {
-            background-color: transparent !important;
-            text-transform: capitalize;
-            .date {
-                font-size: 12px;
-                margin-top: 6px;
-            }
-        }
-
-        ion-label, ion-note {
-            color: #FFF !important;
-        }
-        ion-list.list.list-ios * {
-            border-bottom: 0 !important;
-        }
+    ion-list.list.list-ios {
+        margin-top: 30px !important;
     }
+
 }

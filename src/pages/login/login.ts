@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 
 import { SignUpPage } from '../sign-up/sign-up';
-import { HomePage } from '../home/home';
+import { TabsPage } from '../tabs/tabs';
 
 import { Auth } from '../../providers/auth';
 
@@ -27,7 +27,7 @@ export class LoginPage {
       password: this.password
     }).subscribe(data => {
       console.log(data);
-      this.navCtrl.setRoot(HomePage);
+      this.navCtrl.setRoot(TabsPage);
     }, error => {
       console.error(error);
     });
