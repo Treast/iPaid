@@ -35,4 +35,11 @@ export class MyApp {
     this.menuCtrl.close();
     this.nav.push(SubscriptionsPage);
   }
+
+  public logout(): void 
+  {
+    this.auth.logOut();
+    this.menuCtrl.close();
+    this.nav.setRoot(LoginPage);
+  }
 }

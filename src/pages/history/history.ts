@@ -192,18 +192,33 @@ export class HistoryPage {
   }
 
   private getTransactions(startDate: Date, endDate: Date) {
+    // Tweak to initialize the array with O as value
     this.chartData = new Array(this.chartLabels.length + 1).join('0').split('').map(parseFloat);
-    this.total_amount = 0;
+    this.total_amount = 0.0;
+    // Hide the chart during loading
     this.hasValue = false;
+    // Get all transactions between two dates via the transaction provider
     this.transaction.getTransactionsBetween(startDate, endDate).subscribe(transactions => {
       this.currentTransactions = transactions;
+      // Unwrap the transaction collection
       transactions.subscribe(data => {
         data.forEach(transaction => {
-          if (transaction.amount != undefined) this.chartData[transaction.category_key] += parseInt(transaction.amount); this.total_amount += parseInt(transaction.amount);
+          // Make sure that the transaction get an amount
+          if (transaction.amount != undefined)
+          {
+            // Add the amount of the current transaction to the category total
+            this.chartData[transaction.category_key] += parseInt(transaction.amount);
+            // And to the total amount shown in the middle
+            this.total_amount += parseInt(transaction.amount);
+          }
         });
-        this.loading.dismiss();
-        this.loaded = true;
+        // Make sure that the chart contains at least a value
+        // If no, then show a message instead
         this.checkIfValue();
+        // Hide the loader
+        this.loading.dismiss();
+        // Show the chart
+        this.loaded = true;
       });
     });
   }

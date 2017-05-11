@@ -23,8 +23,9 @@
       <ion-label>Password</ion-label>
       <ion-input type="password" [(ngModel)]="password"></ion-input>
     </ion-item>
-    <button ion-button block (click)="logIn()">Login</button>
   </ion-list>
 
-    <button ion-button block (click)="goToSignUpPage()">SignUp</button>
+    <button ion-button color="light" outline block (click)="logIn()" class="btn-login">Log in</button>
+
+    <button ion-button color="light" outline block (click)="goToSignUpPage()">Sign up</button>
 </ion-content>
