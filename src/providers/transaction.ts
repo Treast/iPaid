@@ -42,6 +42,20 @@ export class Transaction {
     });
   }
 
+  public removeTransaction(transaction): Observable<any> {
+    return Observable.create(observer => {
+      this.auth.getUserData().subscribe(data => {
+        this.angularFire.database.object('/users/' + data.auth.uid + '/transactions/' + transaction.$key).remove().then(sent => {
+          observer.next(sent);
+        }).catch(err => {
+          observer.error(err);
+        });
+      }, error => {
+        observer.error(error);
+      });
+    });
+  }
+
   public addSubscription(subscription): Observable<any> {
     return Observable.create(observer => {
       this.auth.getUserData().subscribe(data => {

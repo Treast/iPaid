@@ -48,11 +48,21 @@
           Transactions during the period
         </ion-list-header>
 
-        <ion-item *ngFor="let transaction of currentTransactions | async">
+        <!-- <ion-item *ngFor="let transaction of currentTransactions | async">
           <ion-icon name="{{ (transaction.category | async)?.icon }}" item-left></ion-icon>
           {{ transaction.name}}
           <ion-note item-right>{{ transaction.amount }}€</ion-note>
-        </ion-item>
+        </ion-item> -->
+          <ion-item-sliding *ngFor="let transaction of transactions">
+            <ion-item>
+              <ion-icon name="{{ (transaction.category | async)?.icon }}" item-left></ion-icon>
+              <div class="name">{{ transaction.name}}</div>
+              <ion-note item-right>{{ transaction.amount }}€</ion-note>
+            </ion-item>
+            <ion-item-options side="right">
+            <button ion-button color="danger" (click)="removeTransaction(transaction)">Remove</button>
+            </ion-item-options>
+          </ion-item-sliding>
       </ion-list>
     </div>
     <div *ngIf="!hasValue" class="no-transaction">

@@ -24,9 +24,12 @@
       </ion-row>
      </ion-grid>
      -->
+
+  <h1 *ngIf="selectedCategory">{{ selectedCategory.name }}</h1>
+     
   <div *ngIf="hasValue">
     <div style="display: block;" *ngIf="loaded">
-      <canvas baseChart width="400" height="400" [options]="chartOptions" [datasets]="chartData" [labels]="chartLabels" [chartType]="chartType" (chartHover)="chartHovered($event)"
+      <canvas baseChart width="400" height="400" [options]="chartOptions" [datasets]="chartData" [labels]="chartLabels" [chartType]="chartType" [colors]="chartColors" (chartHover)="chartHovered($event)"
         (chartClick)="chartClicked($event)"></canvas>
     </div>
   </div>

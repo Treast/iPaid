@@ -1,10 +1,10 @@
 page-categories-modal {
     ion-list {
-      button.item.item-block.item-ios.activated {
-        background: transparent !important
+      button {
+        background: transparent !important;
 
         ion-icon {
-          color: white
+          color: white;
         }
     }
   }

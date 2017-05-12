@@ -1,4 +1,8 @@
 page-add-transaction {
+    .datetime-text {
+      color: white;
+    }
+
     input[type=number], input[type=text] {
         text-align: right;
     }

@@ -6,7 +6,7 @@ page-history {
 
     .total-amount {
         text-align: center;
-        margin-top: -110px;
+        margin-top: -140px;
         margin-bottom: 139px;
         font-size: 2rem;
     }
@@ -26,4 +26,9 @@ page-history {
         border-color: #FFF !important;
         color: #FFF !important;
     }
+
+    ion-item-sliding {
+        background: transparent !important;
+    }
+
 }

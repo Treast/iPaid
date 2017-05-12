@@ -1,18 +1,18 @@
 <ion-header>
   <ion-navbar>
-  <ion-buttons start>
-    <button ion-button icon-only menuToggle>
-      <ion-icon name="menu"></ion-icon>
-    </button>
-  </ion-buttons>
+    <ion-buttons start>
+      <button ion-button icon-only menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+    </ion-buttons>
 
     <ion-title>Home</ion-title>
 
-  <ion-buttons end>
-    <button ion-button icon-only (click)="addTransaction()">
-      <ion-icon name="add"></ion-icon>
-    </button>
-  </ion-buttons>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="addTransaction()">
+        <ion-icon name="add"></ion-icon>
+      </button>
+    </ion-buttons>
 
   </ion-navbar>
 </ion-header>
@@ -28,17 +28,23 @@
     <canvas baseChart width="400" height="400" [datasets]="chartData" [legend]="false" [labels]="chartLabels" [chartType]="chartType" [options]="chartOptions" [colors]="chartColors"></canvas>
   </div>
 
-   <ion-list>
+  <ion-list>
      <!--
     <ion-list-header>
       This month
     </ion-list-header>
-    -->
-   <!-- <ion-item *ngFor="let transaction of lastTransactions" style.borderLeft="5px solid {{ (transaction.category | async)?.color }}"> -->
-    <ion-item *ngFor="let transaction of lastTransactions">
+  -->
+  <!-- <ion-item *ngFor="let transaction of lastTransactions" style.borderLeft="5px solid {{ (transaction.category | async)?.color }}"> -->
+  <ion-item-sliding *ngFor="let transaction of lastTransactions">
+    <ion-item>
+      <ion-icon name="{{ (transaction.category | async)?.icon }}" item-left></ion-icon>
       <div class="name">{{ transaction.name}}</div>
       <ion-note item-right>{{ transaction.amount }}€</ion-note>
     </ion-item>
-  </ion-list>
+    <ion-item-options side="right">
+    <button ion-button color="danger" (click)="removeTransaction(transaction)">Remove</button>
+    </ion-item-options>
+  </ion-item-sliding>
+</ion-list>
 
 </ion-content>

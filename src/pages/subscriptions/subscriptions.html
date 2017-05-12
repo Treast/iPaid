@@ -2,23 +2,23 @@
   <ion-navbar>
     <ion-title>Subscriptions</ion-title>
 
-  <ion-buttons end>
-    <button ion-button icon-only (click)="addSubscription()">
-      <ion-icon name="add"></ion-icon>
-    </button>
-  </ion-buttons>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="addSubscription()">
+        <ion-icon name="add"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
-<ion-list>
+  <ion-list>
     <ion-list-header>
       Subscriptions
     </ion-list-header>
-<ion-item-sliding #item *ngFor="let subscription of subscriptions | async">
-   <ion-item>
+    <ion-item-sliding #item *ngFor="let subscription of subscriptions | async">
+     <ion-item>
       <ion-icon name="{{ (subscription.category | async)?.icon }}" item-left></ion-icon>
       {{ subscription.name}}
       <ion-note item-right>{{ subscription.amount }}€</ion-note>
@@ -27,5 +27,5 @@
       <button ion-button color="danger" (click)="removeSubscription(subscription)">Remove</button>
     </ion-item-options>
   </ion-item-sliding>
-  </ion-list>
+</ion-list>
 </ion-content>

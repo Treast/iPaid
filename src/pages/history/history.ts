@@ -17,6 +17,7 @@ export class HistoryPage {
   nextTitle: String;
 
   currentTransactions: any;
+  transactions: any;
   range: String = "month";
 
   public chartLabels: string[] = [];
@@ -203,6 +204,7 @@ export class HistoryPage {
       // Unwrap the transaction collection
       transactions.subscribe(data => {
         data.forEach(transaction => {
+          this.transactions = data;
           // Make sure that the transaction get an amount
           if (transaction.amount != undefined)
           {
@@ -220,6 +222,19 @@ export class HistoryPage {
         // Show the chart
         this.loaded = true;
       });
+    });
+  }
+
+  public removeTransaction(t) {
+    this.currentTransactions.remove(t);
+
+    this.showLoading();
+    this.transaction.getCategories().subscribe(categories => {
+      categories.forEach(category => {
+        this.chartLabels[category.$key] = category.name;
+        this.chartColors[0].backgroundColor[category.$key] = category.color;
+      });
+      this.showMonth(this.now);
     });
   }
 

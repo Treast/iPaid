@@ -1,5 +1,17 @@
-page-add-subscription {
-    input[type=number], input[type=text] {
-            text-align: right;
+page-subscriptions {
+
+  input[type=number], input[type=text] {
+    text-align: right;
+  }
+
+  ion-list {
+    ion-item-sliding {
+      background: transparent !important;
+
+      ion-icon {
+        color: white;
+      }
     }
+  }
+  
 }

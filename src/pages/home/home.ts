@@ -16,6 +16,8 @@ export class HomePage {
 
   lastTransactions;
 
+  public transactions;
+
   public sum: number = 0;
   public chartLabels: string[] = [];
   public chartData: any = [];
@@ -68,6 +70,7 @@ export class HomePage {
     this.endDate.setDate(this.endDate.getDate() + 7);
 
     this.transaction.getTransactionsBetween(this.beginDate, this.endDate).subscribe(transactions => {
+      this.transactions = transactions;
       transactions.subscribe(ts => {
         this.lastTransactions = ts;
         console.log('Transactions', ts);
@@ -111,6 +114,17 @@ export class HomePage {
 
   public addTransaction(): void {
     this.navCtrl.push(AddTransactionPage);
+  }
+
+  public removeTransaction(t) {
+    this.transactions.remove(t);
+
+    this.sum = 0;
+    this.transactions.subscribe(trans => {
+      trans.forEach(ts => {
+        this.sum += parseFloat(ts.amount);
+      })
+    });
   }
 
 }
