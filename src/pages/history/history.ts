@@ -17,6 +17,7 @@ export class HistoryPage {
   nextTitle: String;
 
   currentTransactions: any;
+  currentSubscriptions: any;
   transactions: any;
   range: String = "month";
 
@@ -209,9 +210,9 @@ export class HistoryPage {
           if (transaction.amount != undefined)
           {
             // Add the amount of the current transaction to the category total
-            this.chartData[transaction.category_key] += parseInt(transaction.amount);
+            this.chartData[transaction.category_key] += parseFloat(transaction.amount);
             // And to the total amount shown in the middle
-            this.total_amount += parseInt(transaction.amount);
+            this.total_amount += parseFloat(transaction.amount);
           }
         });
         // Make sure that the chart contains at least a value
@@ -223,6 +224,25 @@ export class HistoryPage {
         this.loaded = true;
       });
     });
+
+    if(this.range == 'month' || this.range == 'year') {
+      this.transaction.getSubscriptions().subscribe(subscriptions => {
+         subscriptions.subscribe(data => {
+            this.currentSubscriptions = data;
+
+           data.forEach(subscription => {
+             if(this.range == 'year')
+               this.total_amount += 12 * parseFloat(subscription.amount);
+             else 
+               this.total_amount += parseFloat(subscription.amount);
+           });
+         }, error => {
+           console.log(error);
+         });
+      }, error => {
+        console.log(error);
+      });
+    }
   }
 
   public removeTransaction(t) {

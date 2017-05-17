@@ -10,17 +10,17 @@
     <ion-buttons start>
       <button ion-button icon-left (click)="goPrev()">
         <ion-icon name="arrow-back"></ion-icon>
-         {{ prevTitle }}
+        {{ prevTitle }}
       </button>
     </ion-buttons>
     <ion-title>{{ currentTitle }}</ion-title>
     <ion-buttons end>
       <button ion-button icon-right (click)="goNext()">
-         {{ nextTitle }}
-        <ion-icon name="arrow-forward"></ion-icon>
-      </button>
-    </ion-buttons>
-  </ion-navbar>
+       {{ nextTitle }}
+       <ion-icon name="arrow-forward"></ion-icon>
+     </button>
+   </ion-buttons>
+ </ion-navbar>
 
 </ion-header>
 
@@ -42,28 +42,36 @@
       <ion-list>
         <div class="chart">
           <canvas baseChart [data]="chartData" [options]="chartOptions" [labels]="chartLabels" [colors]="chartColors" [chartType]="doughnutChartType" (chartClick)="chartClicked($event)"></canvas>
-          <div class="total-amount">{{ total_amount }}€</div>
+          <div class="total-amount">{{ total_amount | currency:'EUR':true }}</div>
         </div>
         <ion-list-header>
           Transactions during the period
         </ion-list-header>
 
-        <!-- <ion-item *ngFor="let transaction of currentTransactions | async">
-          <ion-icon name="{{ (transaction.category | async)?.icon }}" item-left></ion-icon>
-          {{ transaction.name}}
-          <ion-note item-right>{{ transaction.amount }}€</ion-note>
-        </ion-item> -->
-          <ion-item-sliding *ngFor="let transaction of transactions">
-            <ion-item>
-              <ion-icon name="{{ (transaction.category | async)?.icon }}" item-left></ion-icon>
-              <div class="name">{{ transaction.name}}</div>
-              <ion-note item-right>{{ transaction.amount }}€</ion-note>
-            </ion-item>
-            <ion-item-options side="right">
+        <ion-item-sliding *ngFor="let transaction of transactions">
+          <ion-item>
+            <ion-icon name="{{ (transaction.category | async)?.icon }}" item-left></ion-icon>
+            <div class="name">{{ transaction.name}}</div>
+            <ion-note item-right>{{ transaction.amount | currency:'EUR':true }}</ion-note>
+          </ion-item>
+          <ion-item-options side="right">
             <button ion-button color="danger" (click)="removeTransaction(transaction)">Remove</button>
-            </ion-item-options>
-          </ion-item-sliding>
+          </ion-item-options>
+        </ion-item-sliding>
       </ion-list>
+
+      <ion-list *ngIf="range == 'year' || range == 'month'">
+        <ion-list-header>
+          Subscriptions
+        </ion-list-header>
+        <ion-item *ngFor="let subscription of currentSubscriptions">
+          <ion-icon name="{{ (subscription.category | async)?.icon }}" item-left></ion-icon>
+          <div class="name">{{ subscription.name}}</div>
+          <ion-note item-right *ngIf="range == 'month'">{{ subscription.amount | currency:'EUR':true }}</ion-note>
+          <ion-note item-right *ngIf="range == 'year'">{{ subscription.amount * 12 | currency:'EUR':true }}</ion-note>
+        </ion-item>
+      </ion-list>
+
     </div>
     <div *ngIf="!hasValue" class="no-transaction">
       <p text-center>No transaction during this period.</p>

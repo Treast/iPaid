@@ -18,7 +18,9 @@
   font-family: "Helvetica";
   src: url("../assets/fonts/helveticaneue.ttf");
 }
-
+.toolbar-background.toolbar-background-md {
+    background: transparent !important;
+}
 ion-navbar {
     .toolbar-background {
         background: transparent !important;
@@ -30,6 +32,26 @@ ion-navbar {
     ion-title .toolbar-title {
         color: #FFFFFF !important;
     }
+}
+ion-list-header {
+    font-size: 18px !important;
+    font-weight: 700;
+    background: transparent !important;
+        margin-top: 25px !important;
+    margin-bottom: -10px !important;
+}
+ion-list-header:first-child {
+    margin-top: 0 !important;
+}
+.item-inner {
+    border: 0 !important;
+}
+ion-list-header {
+    border: 0 !important;
+}
+ion-item {
+    border: 0 !important;
+    box-shadow: none !important;
 }
 .header-ios .toolbar-ios:last-child 
 {
@@ -115,4 +137,9 @@ animation: AnimationName 40s ease infinite;
             border-bottom: 0 !important;
             border-top: 0 !important;
         }
+    }
+
+    
+ion-title.title.title-md * {
+        color: white !important;
     }

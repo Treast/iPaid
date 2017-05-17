@@ -21,7 +21,7 @@
      <ion-item>
       <ion-icon name="{{ (subscription.category | async)?.icon }}" item-left></ion-icon>
       {{ subscription.name}}
-      <ion-note item-right>{{ subscription.amount }}€</ion-note>
+      <ion-note item-right>{{ subscription.amount | currency:'EUR':true }}</ion-note>
     </ion-item>
     <ion-item-options side="right">
       <button ion-button color="danger" (click)="removeSubscription(subscription)">Remove</button>
